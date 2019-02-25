@@ -3,6 +3,14 @@ FROM microsoft/dotnet:2.2-sdk-alpine AS build
 
 WORKDIR /app
 
+RUN apk add --update yarn
+
+WORKDIR /app/app
+COPY ./app ./
+
+RUN yarn install && yarn build
+
+WORKDIR /app
 COPY *.csproj ./
 RUN dotnet restore
 
