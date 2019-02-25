@@ -4,7 +4,7 @@ node_modules
 
 /bin
 /obj
-/wwwroot
+/wwwroot/dist/
 
 
 /tests/e2e/reports/
