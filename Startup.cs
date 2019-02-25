@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.SpaServices.Webpack;
 
 namespace core_api
 {
@@ -34,14 +35,32 @@ namespace core_api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                if (System.Diagnostics.Debugger.IsAttached)
+                {
+                    app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                    {
+                        HotModuleReplacement = true
+                    });
+                }
             }
             else
             {
                 app.UseHsts();
             }
 
+            app.UseStaticFiles();
+
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapSpaFallbackRoute(
+                    name: "spa-fallback",
+                    defaults: new { controller = "Home", action = "Index" });
+            });
         }
     }
 }
