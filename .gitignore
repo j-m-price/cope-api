@@ -6,6 +6,7 @@ node_modules
 /obj
 /wwwroot
 
+
 /tests/e2e/reports/
 selenium-debug.log
 
