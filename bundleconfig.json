@@ -1,0 +1,15 @@
+[
+  {
+    "outputFileName": "wwwroot/dist/bundles/styles.min.css",
+    "inputFiles": ["wwwroot/dist/css/*"]
+  },
+  {
+    "outputFileName": "wwwroot/dist/bundles/scripts.min.js",
+    "inputFiles": ["wwwroot/**/*/*.js"],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+]
